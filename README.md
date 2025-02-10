@@ -76,13 +76,12 @@
    Create a `.env` file in the root directory and add:
 
    ```plaintext
-  PORT=5000
-  MONGODB_URI="Mongo_Url"
-  CLOUDINARY_API_SECRET=""
-  CLOUDINARY_API_KEY=""
-  CLOUDINARY_CLOUD_NAME=""
-  JWT_SECRET=""
-
+    PORT=5000
+    MONGODB_URI="Mongo_Url"
+    CLOUDINARY_API_SECRET=""
+    CLOUDINARY_API_KEY=""
+    CLOUDINARY_CLOUD_NAME=""
+    JWT_SECRET=""
    ```
 
 ---
