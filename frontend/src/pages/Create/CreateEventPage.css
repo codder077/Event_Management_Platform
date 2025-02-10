@@ -1,0 +1,149 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background & Container */
+body {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Form Container */
+.create-event-container {
+  max-width: 500px;
+  width: 100%;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin: auto;
+}
+
+/* Title */
+.create-event-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+/* Form Styling */
+.create-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Labels */
+.create-event-form label {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs, Select, and Textarea */
+.create-event-form input,
+.create-event-form textarea,
+.create-event-form select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Focus Effects */
+.create-event-form input:focus,
+.create-event-form textarea:focus,
+.create-event-form select:focus {
+  border-color: #000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* Textarea */
+.create-event-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* File Input */
+.create-event-form input[type="file"] {
+  padding: 10px;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* Button Styling */
+.create-event-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.create-event-button:hover {
+  background: #333;
+  transform: scale(1.03);
+}
+
+/* Image Input Container */
+.image-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Image Preview */
+.image-preview-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .create-event-container {
+      padding: 20px;
+  }
+
+  .create-event-title {
+      font-size: 1.5rem;
+  }
+
+  .create-event-form input,
+  .create-event-form textarea,
+  .create-event-form select {
+      font-size: 0.95rem;
+  }
+
+  .create-event-button {
+      font-size: 0.95rem;
+  }
+}

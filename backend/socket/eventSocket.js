@@ -1,0 +1,144 @@
+/**
+ * eventSocket.js: Socket.IO event handling for real-time event management.
+ * This module sets up socket event listeners for joining, leaving events,
+ * and updating attendee lists and counts in real-time.
+ */
+
+const User = require('../models/User'); // Importing User model
+const Event = require('../models/Event'); // Importing Event model
+
+// Object to store attendees for each event
+const eventsAttendees = {};
+
+const eventSocket = (io) => {
+
+    /**
+     * Fetches user details by userId.
+     * @param {string} userId - ID of the user.
+     * @returns {Promise<string>} - Returns the user's name or 'Unknown User' in case of an error.
+     */
+    const getUserDetails = async (userId) => {
+        try {
+            const user = await User.findById(userId);
+            return user ? user.name : 'Unknown User';
+        } catch (error) {
+            console.error(`Error fetching user details: ${error.message}`);
+            return 'Unknown User';
+        }
+    };
+
+    /**
+     * Fetches event name by eventId.
+     * @param {string} eventId - ID of the event.
+     * @returns {Promise<string>} - Returns the event name or 'Unknown Event' in case of an error.
+     */
+    const getEventName = async (eventId) => {
+        try {
+            const event = await Event.findById(eventId);
+            return event ? event.name : 'Unknown Event';
+        } catch (error) {
+            console.error(`Error fetching event details: ${error.message}`);
+            return 'Unknown Event';
+        }
+    };
+
+    io.on('connection', (socket) => {
+
+        // Handle user joining an event
+        socket.on('joinEvent', async ({ eventId, userId }) => {
+            if (!eventId || !userId) {
+                console.error('Invalid eventId or userId received.');
+                socket.emit('error', { message: 'Invalid eventId or userId' });
+                return;
+            }
+
+            const username = await getUserDetails(userId);
+            const eventName = await getEventName(eventId);
+
+            socket.userData = { eventId, userId };
+
+            socket.join(eventId);
+            
+            // Initialize attendee list if not already present for the event
+            if (!eventsAttendees[eventId]) eventsAttendees[eventId] = [];
+
+            // Avoid duplicate entries
+            if (!eventsAttendees[eventId].find((attendee) => attendee.userId === userId)) {
+                eventsAttendees[eventId].push({ userId, username });
+            }
+
+            // Emit updated attendee list and count to all sockets in the same event
+            io.to(eventId).emit('updateAttendeeListAndCount', {
+                eventId,
+                eventName,
+                attendees: eventsAttendees[eventId],
+                count: eventsAttendees[eventId].length,
+            });
+
+            console.log(`User ${username} joined meeting ${eventId}`);
+        });
+
+        // Handle chat messages in an event
+socket.on('chatMessage', ({ eventId, userId, message }) => {
+    if (!eventId || !userId || !message.trim()) {
+        console.error('Invalid eventId, userId, or empty message.');
+        return;
+    }
+
+    const username = eventsAttendees[eventId]?.find((user) => user.userId === userId)?.username || 'Unknown User';
+
+    const newMessage = {
+        userId,
+        username,
+        text: message,
+        timestamp: new Date().toISOString(),
+    };
+
+    // Broadcast message to all users in the event
+    io.to(eventId).emit('chatMessage', newMessage);
+
+    console.log(`Message from ${username} in event ${eventId}: ${message}`);
+});
+
+        // Handle user leaving an event
+        socket.on('leaveEvent', ({ eventId, userId }) => {
+            if (!eventId || !userId) {
+                console.error('Invalid eventId or userId in leaveEvent.');
+                return;
+            }
+
+            if (eventsAttendees[eventId]) {
+                eventsAttendees[eventId] = eventsAttendees[eventId].filter((attendee) => attendee.userId !== userId);
+            }
+
+            // Emit updated attendee list and count to all sockets in the same event
+            io.to(eventId).emit('updateAttendeeListAndCount', {
+                eventId,
+                attendees: eventsAttendees[eventId] || [],
+                count: eventsAttendees[eventId]?.length || 0,
+            });
+            console.log(`User ${userId} left meeting ${eventId}`);
+        });
+
+        // Handle socket disconnection
+        socket.on('disconnect', () => {
+            const { eventId, userId } = socket.userData || {};
+
+            if (eventId && userId && eventsAttendees[eventId]) {
+                eventsAttendees[eventId] = eventsAttendees[eventId].filter((attendee) => attendee.userId !== userId);
+
+                // Emit updated attendee list and count to all sockets in the same event
+                io.to(eventId).emit('updateAttendeeListAndCount', {
+                    eventId,
+                    attendees: eventsAttendees[eventId] || [],
+                    count: eventsAttendees[eventId]?.length || 0,
+                });
+
+            } else {
+                console.log(`Client disconnected`);
+            }
+        });
+    });
+};
+
+module.exports = eventSocket;

@@ -1,0 +1,203 @@
+/* General Styling */
+:root {
+    --primary-color: white;
+    --secondary-color: #f4f4f9;
+    --accent-color: #d9534f;
+    --text-color: #333;
+    --bg-color: #f9f9f9;
+    --font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100%;
+}
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* This makes the main content take up the remaining space */
+}
+
+
+/* Header */
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color);
+    color: black;
+    padding: 10px 20px;
+}
+
+.event-header h1{
+    margin: 0;
+    color: black;
+    font-size: 20px;
+}
+
+.event-header p{
+    color: black;
+}
+
+.leave-button {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    border: #272626;
+}
+
+.leave-button:hover {
+    background-color: #c9302c;
+}
+
+/* Main Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.left-column,
+.center-content,
+.right-column {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    border: black;
+
+}
+
+h2 {
+    font-size: 18px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Attendee Section */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Livestream Section */
+.livestream {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    color: #888;
+    font-size: 16px;
+}
+
+/* Chat Section */
+.chat-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+
+.chat-container p {
+    margin: 5px 0;
+}
+
+.chat-container strong {
+    color: var(--primary-color);
+}
+
+input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #272626;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .leave-button {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 50px);
+    }
+
+    .chat-box {
+        height: 150px;
+    }
+}

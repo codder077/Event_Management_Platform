@@ -1,0 +1,188 @@
+/* General styles */
+.dashboard-container {
+  max-width: 100%;
+  min-height: 100vh;
+  background: white;
+  padding: 20px;
+  padding-inline: 10%;
+  font-family: 'Arial', sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.search-bar-container {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.filter-icon-button {
+  background:  black !important ;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: black;
+  margin-left: 10px;
+}
+
+.filter-icon-button:hover {
+  color: white;
+}
+
+.filter-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  transition: right 0.4s ease-in-out;
+}
+
+.filter-panel.open {
+  right: 0;
+}
+
+.filter-panel .close-button {
+  align-self: flex-end;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  background: black;
+  margin-bottom: 1rem;
+}
+
+
+/* Label and Input Styling */
+.filter-panel .filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-panel .filter-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.filter-panel .filter-input {
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter-panel .filter-input:focus {
+  border-color: #007bff;
+}
+
+/* Divider */
+.filter-panel .divider {
+  height: 1px;
+  background: #ccc;
+  margin: 10px 0;
+  width: 100%;
+}
+
+/* Buttons */
+.filter-panel .reset-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-panel .reset-button:hover {
+  background-color: #0056b3;
+}
+
+/* Filter Icon Button */
+.filter-icon-button {
+  display: none;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-icon-button:hover {
+  background-color: #0056b3;
+}
+/* Event list styling */
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+  .filters-desktop {
+    display: none;
+  }
+
+  .filter-icon-button {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar-container{
+    width: 100%;
+  }
+  .search-bar .filter-label{
+    display: none !important;
+  }
+
+  i{
+    display: block;
+  }
+}

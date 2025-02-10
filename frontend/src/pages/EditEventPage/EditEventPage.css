@@ -1,0 +1,127 @@
+.edit-event-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #f9fcf1;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-event-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.edit-event-page label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.edit-event-page input,
+.edit-event-page select,
+.edit-event-page textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+textarea{
+  height: max-content;
+  resize: vertical;
+}
+
+.edit-event-page button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-event-page button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-event-page button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.edit-event-page button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+.edit-event-page button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+.image-preview-container {
+  margin-top: 15px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.image-preview {
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.form-disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+
+@media (max-width: 768px) {
+  textarea{
+    height: 20vh;
+  }
+  select{
+    font: 1em sans-serif;
+  }
+  .edit-event-page{
+    margin: 20px;
+  }
+}
