@@ -50,22 +50,13 @@
 
 ---
 
-## 🛠️ **Installation Guide**
-
-### **Prerequisites**
-
-Before setting up, ensure you have:
-
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
-- [MongoDB](https://www.mongodb.com/)
 
 ### **Setup Instructions**
 
 1. **Clone the Repository**
 
    ```sh
-   git clone https://github.com/hack-09/event-management-platform.git
+   git clone https://github.com/codder077/Event_Management_Platform.git
    ```
 
 2. **Navigate to the Project Directory**
@@ -85,8 +76,13 @@ Before setting up, ensure you have:
    Create a `.env` file in the root directory and add:
 
    ```plaintext
-   MONGODB_URI=your_mongodb_uri
-   PORT=your_port
+  PORT=5000
+  MONGODB_URI="Mongo_Url"
+  CLOUDINARY_API_SECRET=""
+  CLOUDINARY_API_KEY=""
+  CLOUDINARY_CLOUD_NAME=""
+  JWT_SECRET=""
+
    ```
 
 ---
@@ -135,32 +131,6 @@ For feedback or queries, reach out at:\
 
 ## 🌐 **Live Demo**
 
-🎉 Try out the platform: [Smart Event Manager](https://event-management-platform-beta.vercel.app/)
+🎉 Try out the platform: [Smart Event Manager](https://event-management-platform-three-tan.vercel.app)
 
----
-
-## 📸 **Screenshots**
-
-### 📊 **Dashboard Overview**
-
-*Manage and track all your events in one place.*\
-
-
-### 🎟️ **Event Creation Page**
-
-*Easily create and customize events.*\
-
-
----
-
-## 🎯 **Why Choose Smart Event Manager?**
-
-- **Efficient & Intuitive**: Simplifies event management.
-- **Scalable**: Suitable for any event size.
-- **Live Analytics & Engagement**: Real-time tracking & interactive chat.
-- **Open Source**: Customize and contribute!
-
----
-
-Let’s redefine event management **with innovation and efficiency**! 🚀
 
